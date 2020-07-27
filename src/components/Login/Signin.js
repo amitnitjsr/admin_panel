@@ -49,6 +49,9 @@ const SignIn = (props) => {
                 props.signInFun(true);
                 props.history.push('./home');
             }
+            else {
+                alert('Please enter the valid user name and password')
+            }
             return null;
         });
     };
