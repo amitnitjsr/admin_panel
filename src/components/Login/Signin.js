@@ -41,19 +41,22 @@ const SignIn = (props) => {
     const [pswVal, setpswVal] = useState(true);
 
     const handlePasswordValidation = () => {
-
+        let log = false;
         props.loginData.map((val) => {
             if (val.name === name && val.password === password) {
                 if (val.name === 'Admin' && val.password === '12345')
                     props.adminLogin(true);
                 props.signInFun(true);
+                log = true;
+                sessionStorage.setItem("isUserLogged", true);
                 props.history.push('./home');
-            }
-            else {
-                alert('Please enter the valid user name and password')
             }
             return null;
         });
+
+        if (!log) {
+            alert('Please enter the valid user name and password')
+        }
     };
 
     const handleTextChange = (event, name) => {
@@ -74,8 +77,8 @@ const SignIn = (props) => {
             else
                 setNameVal(false)
         }
-
     };
+
 
     return (
         <Container component="main" maxWidth="md">
